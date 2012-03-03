@@ -51,6 +51,7 @@ Thanks to all of the contributors for making ActionSheetPicker better for the iO
 
 [Greg Combs](http://github.com/grgcombs) (Refactor!)
 
+[Jeffrey Lee](http://github.com/jeffleeismyhero)
 
 ### Creator ###
 
