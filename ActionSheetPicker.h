@@ -30,4 +30,5 @@
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"
 #import "ActionSheetDistancePicker.h"
+#import "ActionSheetRemotePicker.h"
 
