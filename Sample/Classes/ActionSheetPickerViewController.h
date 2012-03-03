@@ -29,10 +29,11 @@
 #import <UIKit/UIKit.h>
 
 @class AbstractActionSheetPicker;
-@interface ActionSheetPickerViewController : UIViewController <UITextFieldDelegate>
+@interface ActionSheetPickerViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITextField *animalTextField;
 @property (nonatomic, retain) IBOutlet UITextField *dateTextField;
+@property (nonatomic, retain) IBOutlet UITextField *remoteAnimalTextField;
 
 @property (nonatomic, retain) NSArray *animals;
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -47,5 +48,6 @@
 - (IBAction)animalButtonTapped:(UIBarButtonItem *)sender;
 - (IBAction)dateButtonTapped:(UIBarButtonItem *)sender;
 - (IBAction)selectAMeasurement:(id)sender;
+- (IBAction)selectARemoteAnimal:(UIControl *)sender;
 
 @end

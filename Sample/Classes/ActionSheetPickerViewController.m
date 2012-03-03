@@ -34,11 +34,13 @@
 - (void)measurementWasSelectedWithBigUnit:(NSNumber *)bigUnit smallUnit:(NSNumber *)smallUnit element:(id)element;
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element;
 - (void)animalWasSelected:(NSNumber *)selectedIndex element:(id)element;
+- (void)remoteAnimalSelectionWasCanceled:(NSNumber *)selectedIndex element:(id)element;
 @end
 
 @implementation ActionSheetPickerViewController
 
 @synthesize animalTextField = _animalTextField;
+@synthesize remoteAnimalTextField = _remoteAnimalTextField;
 @synthesize dateTextField = _dateTextField;
 
 @synthesize animals = _animals;
@@ -65,6 +67,7 @@
     self.actionSheetPicker = nil;
     
     self.animalTextField = nil;
+    self.remoteAnimalTextField = nil;
     self.dateTextField = nil;
     
     [super viewDidUnload];
@@ -92,8 +95,8 @@
 
 - (IBAction)selectAnAnimal:(UIControl *)sender {
     [ActionSheetStringPicker showPickerWithTitle:@"Select Animal" rows:self.animals initialSelection:self.selectedIndex target:self successAction:@selector(animalWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    
- /* Example ActionSheetPicker using customButtons
+
+  /* Example ActionSheetPicker using customButtons
     self.actionSheetPicker = [[ActionSheetPicker alloc] initWithTitle@"Select Animal" rows:self.animals initialSelection:self.selectedIndex target:self successAction:@selector(itemWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender
  
     [self.actionSheetPicker addCustomButtonWithTitle:@"Special" value:[NSNumber numberWithInt:1]];
@@ -122,6 +125,19 @@
     [ActionSheetDistancePicker showPickerWithTitle:@"Select Length" bigUnitString:@"m" bigUnitMax:330 selectedBigUnit:self.selectedBigUnit smallUnitString:@"cm" smallUnitMax:99 selectedSmallUnit:self.selectedSmallUnit target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:sender];
 }
 
+- (IBAction)selectARemoteAnimal:(UIControl *)sender {
+  UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 200)];
+  picker.delegate = self;
+  picker.showsSelectionIndicator = YES;
+  if (self.selectedIndex) {
+    [picker selectRow:self.selectedIndex inComponent:0 animated:NO];
+  } else {
+    self.selectedIndex = 0;
+    self.remoteAnimalTextField.text = [NSString stringWithFormat:@"Remote %@", [self.animals objectAtIndex:self.selectedIndex]];
+  }
+  [ActionSheetRemotePicker showPickerWithTitle:@"Select Remote Animal" remotePicker:picker target:self successAction:nil cancelAction:@selector(remoteAnimalSelectionWasCanceled:element:) origin:sender];
+}
+
 #pragma mark - Implementation
 
 - (void)animalWasSelected:(NSNumber *)selectedIndex element:(id)element {
@@ -144,6 +160,11 @@
     [element setText:[NSString stringWithFormat:@"%i m and %i cm", [bigUnit intValue], [smallUnit intValue]]];
 }
 
+- (void)remoteAnimalSelectionWasCanceled:(NSNumber *)selectedIndex element:(id)element {
+  self.selectedIndex = 0;
+  self.remoteAnimalTextField.text = self.remoteAnimalTextField.placeholder;
+}
+
 - (void)actionPickerCancelled:(id)sender {
     NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
 }
@@ -154,5 +175,28 @@
     return NO;
 }
 
+#pragma mark - UIPickerViewDelegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
+  self.selectedIndex = row;
+  self.remoteAnimalTextField.text = [NSString stringWithFormat:@"Remote %@", [self.animals objectAtIndex:row]];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+  NSUInteger numRows = [self.animals count];
+  
+  return numRows;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+  return 1;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+  NSString *title;
+  title = [NSString stringWithFormat:@"Remote %@", [self.animals objectAtIndex:row]];
+
+  return title;
+}
 
 @end

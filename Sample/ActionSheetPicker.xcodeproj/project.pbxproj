@@ -23,6 +23,7 @@
 		37037557147B73F000B59AA2 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 37037556147B73EE00B59AA2 /* AbstractActionSheetPicker.m */; };
 		52CFA62313A4D6FA0022667F /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CFA62213A4D6FA0022667F /* MainWindow-iPad.xib */; };
 		52FDE22813A51D2600D8D2C0 /* ActionSheetPickerViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FDE22713A51D2600D8D2C0 /* ActionSheetPickerViewController-iPad.xib */; };
+		7ACC198F1502703900117976 /* ActionSheetRemotePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC198E1502703900117976 /* ActionSheetRemotePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		37037559147B7EC000B59AA2 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = ../../ActionSheetPicker.h; sourceTree = "<group>"; };
 		52CFA62213A4D6FA0022667F /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		52FDE22713A51D2600D8D2C0 /* ActionSheetPickerViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ActionSheetPickerViewController-iPad.xib"; sourceTree = "<group>"; };
+		7ACC198D1502703900117976 /* ActionSheetRemotePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetRemotePicker.h; path = ../../Pickers/ActionSheetRemotePicker.h; sourceTree = "<group>"; };
+		7ACC198E1502703900117976 /* ActionSheetRemotePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetRemotePicker.m; path = ../../Pickers/ActionSheetRemotePicker.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ActionSheetPicker-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ActionSheetPicker-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +107,8 @@
 				2237C38A146FBABC00C74831 /* ActionSheetDistancePicker.m */,
 				2237C390146FBC3000C74831 /* DistancePickerView.h */,
 				2237C391146FBC3000C74831 /* DistancePickerView.m */,
+				7ACC198D1502703900117976 /* ActionSheetRemotePicker.h */,
+				7ACC198E1502703900117976 /* ActionSheetRemotePicker.m */,
 			);
 			name = Pickers;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				2237C3971470D1F300C74831 /* NSDate+TCUtils.m in Sources */,
 				37037553147B387900B59AA2 /* ActionSheetStringPicker.m in Sources */,
 				37037557147B73F000B59AA2 /* AbstractActionSheetPicker.m in Sources */,
+				7ACC198F1502703900117976 /* ActionSheetRemotePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
