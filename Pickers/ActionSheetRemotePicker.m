@@ -47,7 +47,7 @@
 }
 
 + (id)showPickerWithTitle:(NSString *)title remotePicker:(UIPickerView *)remotePicker target:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin {
-  ActionSheetRemotePicker *picker = [[[ActionSheetRemotePicker alloc] initWithTitle:title remotePicker:(UIPickerView *)remotePicker target:target successAction:successAction cancelAction:cancelActionOrNil origin:origin] autorelease];
+  ActionSheetRemotePicker *picker = [[ActionSheetRemotePicker alloc] initWithTitle:title remotePicker:(UIPickerView *)remotePicker target:target successAction:successAction cancelAction:cancelActionOrNil origin:origin];
   [picker showActionSheetPicker];
   return picker;
 }
@@ -82,11 +82,9 @@
   if (self.onActionSheetDone) {
     _onActionSheetDone(self, 0, nil);
     return;
+  } else if (target && successAction && [target respondsToSelector:successAction]) {
+    [target performSelector:successAction withObject:origin];
   }
-  else if (target && [target respondsToSelector:successAction]) {
-    return;
-  }
-  NSLog(@"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker", object_getClassName(target), (char *)successAction);
 }
 
 - (void)notifyTarget:(id)target didCancelWithAction:(SEL)cancelAction origin:(id)origin {
